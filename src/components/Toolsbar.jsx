@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-export default function Toolbar() {
-  const [showFilter, setShowFilter] = useState(true);
+export default function Toolbar({ showFilter, setShowFilter, sort, setSort }) {
   const [showSort, setSortFilter] = useState(false);
   const [selectedSort, setSelectedSort] = useState("RECOMMENDED");
 
@@ -18,17 +17,20 @@ export default function Toolbar() {
       <div className="toolbarLeft">
         <span className="itemCount">3425 Items</span>
 
-        <button
-          className="filterToggle"
-          onClick={() => setShowFilter(!showFilter)}
-        >
+        <button className="filterToggle" onClick={() => setShowFilter(false)}>
           {showFilter ? "HIDE FILTER" : "SHOW FILTER"}
         </button>
       </div>
 
       <div className="toolbarRight">
-        <button className="sortButton" onClick={() => setShortSort(!showSort)}>
-          {selectedSort}
+        <button
+          className="sortButton"
+          onClick={() => {
+            setSort(option);
+            setShortSort(false);
+          }}
+        >
+          {sort}
         </button>
 
         {showSort && (
