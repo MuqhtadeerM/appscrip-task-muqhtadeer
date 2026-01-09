@@ -1,0 +1,64 @@
+.header {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.topHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.logoLeft {
+  font-size: 40px;
+}
+
+.logoCenter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 35px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.logoRight {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 20px;
+}
+
+.navBar {
+  padding: 14px 0;
+}
+
+.navBar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 40px;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 1px;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 20px 100px;
+}
+
+.hero h1 {
+  font-size: 42px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  max-width: 720px;
+  margin: 0 auto;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
