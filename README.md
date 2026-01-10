@@ -80,10 +80,23 @@ git clone https://github.com/muqhtadeerM/appscrip-task-muqhtadeer.git
 cd appscrip-task-muqhtadeer
 ""
 
-"""npm install"""
+npm install
 
-"""npm run dev
-"""
+npm run dev
+
+Open:
+👉 http://localhost:3000
+
+🧪 Production Readiness Checklist
+
+ - Minimal DOM structure
+ - Clean naming conventions
+ - No unnecessary libraries
+ - Responsive across screen sizes
+ - SEO compliant
+ - Netlify compatible
+ - API fallback handling
+
 👤 Author
 Muhammed Muqhtadeer
 Frontend Developer | React | Next.js
