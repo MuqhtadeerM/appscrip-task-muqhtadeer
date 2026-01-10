@@ -2,9 +2,12 @@ import styles from "../../styles/footer.module.css";
 
 export default function Footer() {
   return (
+    // Footer wrapper
     <footer className={styles.footer}>
       <div className={styles.container}>
+        {/* Top section: Newsletter + Contact info */}
         <div className={styles.grid}>
+          {/* Newsletter signup */}
           <div className={styles.newsletter}>
             <h2 className={styles.title}>BE THE FIRST TO KNOW</h2>
             <p className={styles.text}>Sign up for updates from mettā muse.</p>
@@ -22,6 +25,7 @@ export default function Footer() {
             </form>
           </div>
 
+          {/* Contact & currency info */}
           <div className={styles.contact}>
             <h2 className={styles.title}>CONTACT US</h2>
             <p className={styles.text}>+44 221 133 5360</p>
@@ -40,9 +44,12 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Divider line */}
         <div className={styles.divider}></div>
 
+        {/* Bottom section: Links, social & payments */}
         <div className={styles.bottom}>
+          {/* Footer navigation links */}
           <div className={styles.links}>
             <div className={styles.column}>
               <h3 className={styles.columnTitle}>mettā muse</h3>
@@ -92,15 +99,18 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Social media & payment methods */}
           <div className={styles.social}>
             <h3 className={styles.columnTitle}>FOLLOW US</h3>
 
+            {/* Social icons */}
             <div className={styles.socialIcons}>
               <a
                 href="#instagram"
                 aria-label="Instagram"
                 className={styles.socialLink}
               >
+                {/* Instagram icon */}
                 <svg
                   width="24"
                   height="24"
@@ -134,6 +144,7 @@ export default function Footer() {
                 aria-label="LinkedIn"
                 className={styles.socialLink}
               >
+                {/* LinkedIn icon */}
                 <svg
                   width="24"
                   height="24"
@@ -160,6 +171,7 @@ export default function Footer() {
               </a>
             </div>
 
+            {/* Accepted payment methods */}
             <h3 className={styles.paymentTitle}>mettā muse ACCEPTS</h3>
 
             <div className={styles.payment}>
@@ -173,6 +185,7 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Copyright */}
         <div className={styles.copyright}>
           Copyright © 2023 mettamuse. All rights reserved.
         </div>
