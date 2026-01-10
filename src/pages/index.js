@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 // Layout components
 import Footer from "../components/layout/Footer";
 import Header from "../components/layout/Header";
@@ -16,8 +18,26 @@ import styles from "../styles/product.module.css";
 // Custom hook for product logic (filtering, sorting, favorites)
 import useProducts from "../hooks/useProducts";
 
-export default function Home({ products }) {
-  // All product-related state & handlers come from custom hook
+export default function Home({ products: initialProducts }) {
+  const [products, setProducts] = useState(initialProducts);
+  const [loading, setLoading] = useState(initialProducts.length === 0);
+
+  // Fetch on client-side if SSG failed
+  useEffect(() => {
+    if (initialProducts.length === 0) {
+      fetch("https://fakestoreapi.com/products")
+        .then((res) => res.json())
+        .then((data) => {
+          setProducts(Array.isArray(data) ? data : []);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Client-side fetch failed:", err);
+          setLoading(false);
+        });
+    }
+  }, [initialProducts.length]);
+
   const {
     filteredProducts,
     sortOrder,
@@ -29,103 +49,86 @@ export default function Home({ products }) {
     toggleFilters,
   } = useProducts(products);
 
-  if (products.length === 0) {
-    return (
-      <>
-        <Header />
-        <main className={styles.main}>
-          <HeroSection />
-          <div style={{ padding: "2rem", textAlign: "center" }}>
-            <p>No products found. API may have failed.</p>
-          </div>
-        </main>
-        <Footer />
-      </>
-    );
-  }
   return (
     <>
-      {/* Common site header */}
       <Header />
 
       <main className={styles.main}>
-        {/* Top hero/banner section */}
         <HeroSection />
 
-        {/* Sorting & filter toggle bar */}
-        <ControlsBar
-          count={filteredProducts.length} // number of visible products
-          showFilters={showFilters}
-          onToggleFilters={toggleFilters}
-          sortOrder={sortOrder}
-          onSort={handleSort}
-        />
+        {loading ? (
+          <div style={{ padding: "2rem", textAlign: "center" }}>
+            <p>Loading products...</p>
+          </div>
+        ) : products.length === 0 ? (
+          <div style={{ padding: "2rem", textAlign: "center" }}>
+            <p>No products found. Please try again later.</p>
+          </div>
+        ) : (
+          <>
+            <ControlsBar
+              count={filteredProducts.length}
+              showFilters={showFilters}
+              onToggleFilters={toggleFilters}
+              sortOrder={sortOrder}
+              onSort={handleSort}
+            />
 
-        <div className={styles.container}>
-          {/* Sidebar filters */}
-          <Filters
-            show={showFilters}
-            onFilter={handleFilter}
-            categories={["all", ...new Set(products.map((p) => p.category))]}
-          />
+            <div className={styles.container}>
+              <Filters
+                show={showFilters}
+                onFilter={handleFilter}
+                categories={[
+                  "all",
+                  ...new Set(products.map((p) => p.category)),
+                ]}
+              />
 
-          {/* Product listing grid */}
-          <ProductGrid
-            products={filteredProducts}
-            favorites={favorites}
-            onToggleFavorite={toggleFavorite}
-          />
-        </div>
+              <ProductGrid
+                products={filteredProducts}
+                favorites={favorites}
+                onToggleFavorite={toggleFavorite}
+              />
+            </div>
+          </>
+        )}
       </main>
 
-      {/* Common site footer */}
       <Footer />
     </>
   );
 }
 
-// Runs at build time with ISR
 export async function getStaticProps() {
   try {
-    console.log("Fetching products from API...");
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
-
     const res = await fetch("https://fakestoreapi.com/products", {
-      signal: controller.signal,
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0",
       },
     });
 
-    clearTimeout(timeoutId);
-
     if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
+      console.error(`API responded with status: ${res.status}`);
+      return {
+        props: { products: [] },
+        revalidate: 60,
+      };
     }
 
-    const data = await res.json();
-    console.log(`Successfully fetched ${data.length} products`);
-
-    const products = Array.isArray(data) ? data : [];
+    const products = await res.json();
 
     return {
       props: {
-        products,
+        products: Array.isArray(products) ? products : [],
       },
-      revalidate: 3600, // re-fetch every 1 hour
+      revalidate: 3600,
     };
   } catch (error) {
-    console.error("Failed to fetch products:", error.message);
-
-    // Return empty array on failure
+    console.error("Build-time fetch failed:", error.message);
+    // Return empty array, will fetch on client-side
     return {
-      props: {
-        products: [],
-      },
-      revalidate: 60, // retry after 1 minute
+      props: { products: [] },
+      revalidate: 60,
     };
   }
 }
