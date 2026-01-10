@@ -9,9 +9,13 @@ export default function ControlsBar({
   onSort,
 }) {
   return (
+    // Top controls section (item count, filter toggle, sort)
     <div className={styles.controls}>
+      {/* Item count + filter toggle */}
       <div className={styles.itemCount}>
         <span>{count} ITEMS</span>
+
+        {/* Show / hide filters button */}
         <button
           className={styles.filterToggle}
           onClick={onToggleFilters}
@@ -21,6 +25,7 @@ export default function ControlsBar({
         </button>
       </div>
 
+      {/* Sort dropdown */}
       <SortDropdown currentSort={sortOrder} onSort={onSort} />
     </div>
   );
