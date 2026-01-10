@@ -1,6 +1,6 @@
 // Layout components
-import Footer from "../components/layout/Footer";
-import Header from "../components/layout/Header";
+import Footer from "../components/layout/Footer.jsx";
+import Header from "../components/layout/Header.jsx";
 
 // Product-related components
 import Filters from "../components/product/Filters.jsx";
@@ -14,7 +14,7 @@ import HeroSection from "../components/sections/HeroSection.jsx";
 import styles from "../styles/product.module.css";
 
 // Custom hook for product logic (filtering, sorting, favorites)
-import useProducts from "../hooks/useProducts";
+import useProducts from "../hooks/useProducts.js";
 
 export default function Home({ products }) {
   // All product-related state & handlers come from custom hook
@@ -40,16 +40,20 @@ export default function Home({ products }) {
 
         {/* Sorting & filter toggle bar */}
         <ControlsBar
-          count={filteredProducts.length} // number of visible products
+          itemCount={filteredProducts.length}
           showFilters={showFilters}
           onToggleFilters={toggleFilters}
-          sortOrder={sortOrder}
+          currentSort={sortOrder}
           onSort={handleSort}
         />
 
         <div className={styles.container}>
           {/* Sidebar filters */}
-          <Filters show={showFilters} onFilter={handleFilter} />
+          <Filters
+            show={showFilters}
+            onFilter={handleFilter}
+            categories={["all", ...new Set(products.map((p) => p.category))]}
+          />
 
           {/* Product listing grid */}
           <ProductGrid
@@ -66,26 +70,33 @@ export default function Home({ products }) {
   );
 }
 
-// Runs on every request (SSR)
-export async function getStaticProps() {
+// Server-Side Rendering - Better for Netlify
+export async function getServerSideProps() {
   try {
-    const res = await fetch("https://fakestoreapi.com/products");
+    const res = await fetch("https://fakestoreapi.com/products", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error(`API returned ${res.status}`);
+    }
+
     const products = await res.json();
 
     return {
       props: {
         products: Array.isArray(products) ? products : [],
       },
-      revalidate: 3600, // re-fetch every 1 hour
     };
   } catch (error) {
-    console.error("Build-time fetch failed:", error);
+    console.error("Failed to fetch products:", error);
 
     return {
       props: {
         products: [],
       },
-      revalidate: 3600,
     };
   }
 }
