@@ -1,4 +1,4 @@
-# 🛍️ Mettā Muse – Product Listing Page (Appscrip Frontend Task)
+# 🛍️ Mettā Muse – Product Listing Page
 
 A production-ready, responsive product listing page built using **Next.js** that demonstrates clean UI architecture, SEO best practices, server-side/static data fetching, and modular component design.
 
