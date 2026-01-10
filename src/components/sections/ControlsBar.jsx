@@ -1,4 +1,4 @@
-import SortDropdown from "../product/SortDropdown";
+import SortDropdown from "../product/SortDropdown.jsx";
 import styles from "../../styles/product.module.css";
 
 export default function ControlsBar({

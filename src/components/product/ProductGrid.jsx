@@ -1,4 +1,4 @@
-import ProductCard from "./ProductCard";
+import ProductCard from "./ProductCard.jsx";
 import styles from "../../styles/product.module.css";
 
 export default function ProductGrid({ products, favorites, onToggleFavorite }) {
