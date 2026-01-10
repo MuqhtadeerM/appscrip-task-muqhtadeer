@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🛍️ Mettā Muse – Product Listing Page (Appscrip Frontend Task)
 
-## Getting Started
+A production-ready, responsive product listing page built using **Next.js** that demonstrates clean UI architecture, SEO best practices, server-side/static data fetching, and modular component design.
 
-First, run the development server:
+This project fulfills all requirements of the Appscrip frontend assignment, including SSR/SSG awareness, responsive UI, minimal dependencies, SEO optimization, and public deployment compatibility.
+
+---
+
+## 🚀 Live Demo
+
+🔗 **Deployed on Netlify**  
+https://appscrip-task-muqhtadeer.netlify.app/
+
+---
+
+## 📌 Features
+
+- ⚡ Fast, SEO-friendly product listing
+- 🧩 Modular, reusable component architecture
+- 🔍 Filters & sorting (Recommended, Price, Popular, etc.)
+- ❤️ Wishlist (favorite) toggle
+- 📱 Fully responsive (Desktop, Tablet, Mobile)
+- 🧠 Custom React hook for product logic
+- 🌐 API data fetching with fallback handling
+- ♻️ Incremental Static Regeneration (ISR)
+- 🛡️ Production-safe deployment on Netlify
+
+---
+
+## 🧠 Tech Stack
+
+- **Framework:** Next.js (Pages Router)
+- **Language:** JavaScript (ES6+)
+- **Styling:** CSS Modules
+- **State Management:** React Hooks
+- **Data Source:** Fake Store API
+- **Deployment:** Netlify
+
+> ⚠️ No unnecessary third-party libraries used (as per assignment constraints)
+
+---
+
+## 🗂️ Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Header.jsx
+│   │   └── Footer.jsx
+│   ├── product/
+│   │   ├── Filters.jsx
+│   │   ├── ProductCard.jsx
+│   │   └── ProductGrid.jsx
+│   └── sections/
+│       ├── HeroSection.jsx
+│       └── ControlsBar.jsx
+│
+├── hooks/
+│   └── useProducts.js
+│
+├── pages/
+│   ├── index.js
+│   └── _app.js
+│
+├── styles/
+│   ├── globals.css
+│   ├── header.module.css
+│   ├── footer.module.css
+│   └── product.module.css
+│
+└── public/
+    └── images/
+        └── logo.png
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+""
+git clone https://github.com/muqhtadeerM/appscrip-task-muqhtadeer.git
+cd appscrip-task-muqhtadeer
+""
 
-## Learn More
+"""npm install"""
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+"""npm run dev
+"""
+👤 Author
+Muhammed Muqhtadeer
+Frontend Developer | React | Next.js
