@@ -1,6 +1,6 @@
 // Layout components
-import Footer from "../components/layout/Footer.jsx";
-import Header from "../components/layout/Header.jsx";
+import Footer from "../components/layout/Footer";
+import Header from "../components/layout/Header";
 
 // Product-related components
 import Filters from "../components/product/Filters.jsx";
@@ -14,7 +14,7 @@ import HeroSection from "../components/sections/HeroSection.jsx";
 import styles from "../styles/product.module.css";
 
 // Custom hook for product logic (filtering, sorting, favorites)
-import useProducts from "../hooks/useProducts.js";
+import useProducts from "../hooks/useProducts";
 
 export default function Home({ products }) {
   // All product-related state & handlers come from custom hook
@@ -40,10 +40,10 @@ export default function Home({ products }) {
 
         {/* Sorting & filter toggle bar */}
         <ControlsBar
-          itemCount={filteredProducts.length}
+          count={filteredProducts.length} // number of visible products
           showFilters={showFilters}
           onToggleFilters={toggleFilters}
-          currentSort={sortOrder}
+          sortOrder={sortOrder}
           onSort={handleSort}
         />
 
@@ -70,33 +70,48 @@ export default function Home({ products }) {
   );
 }
 
-// Server-Side Rendering - Better for Netlify
-export async function getServerSideProps() {
+// Runs at build time with ISR
+export async function getStaticProps() {
   try {
+    console.log("Fetching products from API...");
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+
     const res = await fetch("https://fakestoreapi.com/products", {
+      signal: controller.signal,
       headers: {
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
     });
 
+    clearTimeout(timeoutId);
+
     if (!res.ok) {
-      throw new Error(`API returned ${res.status}`);
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    const products = await res.json();
+    const data = await res.json();
+    console.log(`Successfully fetched ${data.length} products`);
+
+    const products = Array.isArray(data) ? data : [];
 
     return {
       props: {
-        products: Array.isArray(products) ? products : [],
+        products,
       },
+      revalidate: 3600, // re-fetch every 1 hour
     };
   } catch (error) {
-    console.error("Failed to fetch products:", error);
+    console.error("Failed to fetch products:", error.message);
 
+    // Return empty array on failure
     return {
       props: {
         products: [],
       },
+      revalidate: 60, // retry after 1 minute
     };
   }
 }
