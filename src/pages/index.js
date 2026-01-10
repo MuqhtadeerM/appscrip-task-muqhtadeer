@@ -69,12 +69,13 @@ export default function Home({ products }) {
 // Runs on every request (SSR)
 export async function getServerSideProps() {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_SITE_URL ||
-      process.env.URL ||
-      "http://localhost:3000";
+    const res = await fetch("https://fakestoreapi.com/products", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+      },
+    });
 
-    const res = await fetch(`${baseUrl}/api/products`);
     const products = await res.json();
 
     return {
