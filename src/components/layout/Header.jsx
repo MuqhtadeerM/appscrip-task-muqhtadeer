@@ -52,7 +52,6 @@ export default function Header() {
               />
             </svg>
           </button>
-
           <button className={styles.iconBtn} aria-label="Wishlist">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
@@ -62,7 +61,6 @@ export default function Header() {
               />
             </svg>
           </button>
-
           <button className={styles.iconBtn} aria-label="Cart">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <path
@@ -74,7 +72,6 @@ export default function Header() {
               <circle cx="15" cy="18" r="1" fill="currentColor" />
             </svg>
           </button>
-
           <button className={styles.iconBtn} aria-label="Account">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
               <circle
@@ -91,7 +88,6 @@ export default function Header() {
               />
             </svg>
           </button>
-
           <select className={styles.langSelect} aria-label="Language">
             <option>ENG</option>
             <option>ESP</option>
