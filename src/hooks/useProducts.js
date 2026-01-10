@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export default function useProducts(initialProducts) {
-  // ✅ Always initialize with an array (SSR-safe)
+  // Always initialize with an array (SSR-safe)
   const [filteredProducts, setFilteredProducts] = useState(
     Array.isArray(initialProducts) ? initialProducts : []
   );
@@ -10,7 +10,7 @@ export default function useProducts(initialProducts) {
   const [showFilters, setShowFilters] = useState(false);
   const [favorites, setFavorites] = useState({});
 
-  // ✅ Sync when SSR props arrive / change
+  // Sync when SSR props arrive / change
   useEffect(() => {
     if (Array.isArray(initialProducts)) {
       setFilteredProducts(initialProducts);
