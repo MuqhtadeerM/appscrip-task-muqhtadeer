@@ -1,4 +1,5 @@
 import { useState } from "react";
+import image from "../../assets/image.png";
 import styles from "../../styles/header.module.css";
 
 export default function Header() {
@@ -17,23 +18,14 @@ export default function Header() {
           <span className={styles.menuIcon}></span>
         </button>
 
+        {/* logo style */}
         <div className={styles.logo}>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path
-              d="M16 2L2 16L16 30L30 16L16 2Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-            <path
-              d="M16 8L8 16L16 24L24 16L16 8Z"
-              stroke="currentColor"
-              strokeWidth="2"
-            />
-          </svg>
+          <img src={image.src} alt="Logo" />
         </div>
 
         <div className={styles.logoText}>LOGO</div>
 
+        {/* Icon buttons */}
         <div className={styles.actions}>
           <button className={styles.iconBtn} aria-label="Search">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none">

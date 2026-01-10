@@ -30,13 +30,14 @@
   transition: 0.3s;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
+.logoImage {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }
 
 .logoText {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   letter-spacing: 0.1em;
   position: absolute;
