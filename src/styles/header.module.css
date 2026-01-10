@@ -82,15 +82,30 @@
 }
 
 .navLink {
+  position: relative;
+  display: inline-block;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 800;
   letter-spacing: 0.05em;
-  transition: opacity 0.2s;
-  white-space: nowrap;
+  padding-bottom: 4px;
 }
-
 .navLink:hover {
   opacity: 0.6;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #000;
+  transition: width 0.25s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
 }
 
 @media (max-width: 968px) {
