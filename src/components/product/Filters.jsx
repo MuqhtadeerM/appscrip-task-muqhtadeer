@@ -2,7 +2,10 @@ import { useState } from "react";
 import styles from "../../styles/product.module.css";
 
 export default function Filters({ show, onFilter, categories }) {
+  // Selected category for filtering products
   const [selectedCategory, setSelectedCategory] = useState("all");
+
+  // Controls expand/collapse state of each filter section
   const [expandedSections, setExpandedSections] = useState({
     ideal: true,
     occasion: false,
@@ -14,19 +17,24 @@ export default function Filters({ show, onFilter, categories }) {
     pattern: false,
   });
 
+  // Toggle individual filter section
   const toggleSection = (section) => {
     setExpandedSections((prev) => ({ ...prev, [section]: !prev[section] }));
   };
 
+  // Handle category change and notify parent
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
     onFilter({ category });
   };
 
+  // Hide filters when toggle is off
   if (!show) return null;
 
   return (
+    // Filters sidebar
     <aside className={styles.filters}>
+      {/* Customizable checkbox */}
       <div className={styles.filterSection}>
         <label className={styles.checkbox}>
           <input type="checkbox" />
@@ -34,6 +42,7 @@ export default function Filters({ show, onFilter, categories }) {
         </label>
       </div>
 
+      {/* IDEAL FOR filter */}
       <div className={styles.filterSection}>
         <button
           className={styles.filterHeader}
@@ -55,6 +64,7 @@ export default function Filters({ show, onFilter, categories }) {
             <p className={styles.filterLabel}>All</p>
             <button className={styles.unselectAll}>Unselect all</button>
 
+            {/* Category selection */}
             <label className={styles.checkbox}>
               <input
                 type="radio"
@@ -88,166 +98,39 @@ export default function Filters({ show, onFilter, categories }) {
         )}
       </div>
 
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("occasion")}
-          aria-expanded={expandedSections.occasion}
-        >
-          <span>OCCASION</span>
-          <span
-            className={
-              expandedSections.occasion ? styles.chevronUp : styles.chevronDown
-            }
+      {/* Reusable filter sections (occasion, work, fabric, etc.) */}
+      {[
+        ["occasion", "OCCASION"],
+        ["work", "WORK"],
+        ["fabric", "FABRIC"],
+        ["segment", "SEGMENT"],
+        ["suitable", "SUITABLE FOR"],
+        ["materials", "RAW MATERIALS"],
+        ["pattern", "PATTERN"],
+      ].map(([key, label]) => (
+        <div key={key} className={styles.filterSection}>
+          <button
+            className={styles.filterHeader}
+            onClick={() => toggleSection(key)}
+            aria-expanded={expandedSections[key]}
           >
-            {expandedSections.occasion ? "▲" : "▼"}
-          </span>
-        </button>
+            <span>{label}</span>
+            <span
+              className={
+                expandedSections[key] ? styles.chevronUp : styles.chevronDown
+              }
+            >
+              {expandedSections[key] ? "▲" : "▼"}
+            </span>
+          </button>
 
-        {expandedSections.occasion && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("work")}
-          aria-expanded={expandedSections.work}
-        >
-          <span>WORK</span>
-          <span
-            className={
-              expandedSections.work ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.work ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.work && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("fabric")}
-          aria-expanded={expandedSections.fabric}
-        >
-          <span>FABRIC</span>
-          <span
-            className={
-              expandedSections.fabric ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.fabric ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.fabric && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("segment")}
-          aria-expanded={expandedSections.segment}
-        >
-          <span>SEGMENT</span>
-          <span
-            className={
-              expandedSections.segment ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.segment ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.segment && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("suitable")}
-          aria-expanded={expandedSections.suitable}
-        >
-          <span>SUITABLE FOR</span>
-          <span
-            className={
-              expandedSections.suitable ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.suitable ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.suitable && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("materials")}
-          aria-expanded={expandedSections.materials}
-        >
-          <span>RAW MATERIALS</span>
-          <span
-            className={
-              expandedSections.materials ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.materials ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.materials && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
-
-      <div className={styles.filterSection}>
-        <button
-          className={styles.filterHeader}
-          onClick={() => toggleSection("pattern")}
-          aria-expanded={expandedSections.pattern}
-        >
-          <span>PATTERN</span>
-          <span
-            className={
-              expandedSections.pattern ? styles.chevronUp : styles.chevronDown
-            }
-          >
-            {expandedSections.pattern ? "▲" : "▼"}
-          </span>
-        </button>
-
-        {expandedSections.pattern && (
-          <div className={styles.filterContent}>
-            <p className={styles.filterLabel}>All</p>
-          </div>
-        )}
-      </div>
+          {expandedSections[key] && (
+            <div className={styles.filterContent}>
+              <p className={styles.filterLabel}>All</p>
+            </div>
+          )}
+        </div>
+      ))}
     </aside>
   );
 }

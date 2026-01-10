@@ -2,7 +2,9 @@ import styles from "../../styles/product.module.css";
 
 export default function ProductCard({ product, isFavorite, onToggleFavorite }) {
   return (
+    // Single product card
     <article className={styles.card}>
+      {/* Product image */}
       <div className={styles.imageWrapper}>
         <img
           src={product.image}
@@ -12,9 +14,12 @@ export default function ProductCard({ product, isFavorite, onToggleFavorite }) {
         />
       </div>
 
+      {/* Product details */}
       <div className={styles.info}>
+        {/* Product title */}
         <h3 className={styles.name}>{product.title.toUpperCase()}</h3>
 
+        {/* Pricing access message */}
         <div className={styles.meta}>
           <a href="#signin" className={styles.link}>
             Sign in
@@ -25,6 +30,7 @@ export default function ProductCard({ product, isFavorite, onToggleFavorite }) {
           </a>
         </div>
 
+        {/* Wishlist / favorite button */}
         <button
           className={`${styles.favorite} ${
             isFavorite ? styles.favoriteActive : ""
