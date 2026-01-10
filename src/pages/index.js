@@ -29,6 +29,20 @@ export default function Home({ products }) {
     toggleFilters,
   } = useProducts(products);
 
+  if (products.length === 0) {
+    return (
+      <>
+        <Header />
+        <main className={styles.main}>
+          <HeroSection />
+          <div style={{ padding: "2rem", textAlign: "center" }}>
+            <p>No products found. API may have failed.</p>
+          </div>
+        </main>
+        <Footer />
+      </>
+    );
+  }
   return (
     <>
       {/* Common site header */}
