@@ -67,22 +67,22 @@ export default function Home({ products }) {
 }
 
 // Runs on every request (SSR)
-export async function getServerSideProps() {
+export async function getServerSideProps({ req }) {
+  const protocol = req.headers["x-forwarded-proto"] || "https";
+  const host = req.headers.host;
+  const baseUrl = `${protocol}://${host}`;
+
   try {
-    // Fetch products from external API
-    const res = await fetch("https://fakestoreapi.com/products");
+    const res = await fetch(`${baseUrl}/api/products`);
     const products = await res.json();
 
     return {
       props: {
-        // Safety check to avoid runtime errors
         products: Array.isArray(products) ? products : [],
       },
     };
   } catch (error) {
-    console.error("Error fetching products:", error);
-
-    // Fallback if API fails
+    console.error("SSR fetch failed:", error);
     return {
       props: {
         products: [],
