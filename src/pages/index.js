@@ -67,28 +67,25 @@ export default function Home({ products }) {
 }
 
 // Runs on every request (SSR)
-export async function getServerSideProps() {
+export async function getStaticProps() {
   try {
-    const res = await fetch("https://fakestoreapi.com/products", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-      },
-    });
-
+    const res = await fetch("https://fakestoreapi.com/products");
     const products = await res.json();
 
     return {
       props: {
         products: Array.isArray(products) ? products : [],
       },
+      revalidate: 3600, // re-fetch every 1 hour
     };
   } catch (error) {
-    console.error("SSR fetch failed:", error);
+    console.error("Build-time fetch failed:", error);
+
     return {
       props: {
         products: [],
       },
+      revalidate: 3600,
     };
   }
 }
