@@ -1,0 +1,314 @@
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+.hero {
+  text-align: center;
+  padding: 4rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+}
+
+.heroText {
+  max-width: 700px;
+  font-size: 1.3rem;
+  margin: 0 auto;
+  color: #666;
+  line-height: 1.8;
+}
+
+.controls {
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 50;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.itemCount {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.filterToggle {
+  color: #666;
+  text-decoration: underline;
+  font-size: 0.875rem;
+  transition: color 0.2s;
+}
+
+.filterToggle:hover {
+  color: #000;
+}
+
+.sortDropdown {
+  position: relative;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e5e5e5;
+}
+
+.arrow {
+  font-size: 0.75rem;
+}
+
+.sortMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  min-width: 220px;
+  margin-top: 0.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.sortOption {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.875rem;
+  transition: background 0.2s;
+}
+
+.sortOption:hover {
+  background: #f5f5f5;
+}
+
+.sortActive {
+  font-weight: 600;
+}
+
+.checkmark {
+  color: #000;
+}
+
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+
+.filters {
+  width: 280px;
+  flex-shrink: 0;
+  border-right: 1px solid #e5e5e5;
+  padding-right: 2rem;
+}
+
+.filterSection {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 1.5rem 0;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  margin-bottom: 0.75rem;
+}
+
+.checkbox input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.chevronUp,
+.chevronDown {
+  font-size: 0.75rem;
+}
+
+.filterContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filterLabel {
+  font-size: 0.875rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.unselectAll {
+  font-size: 0.75rem;
+  color: #666;
+  text-decoration: underline;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: #f5f5f5;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 1rem;
+}
+
+.info {
+  position: relative;
+}
+
+.name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.link {
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #000;
+}
+
+.favorite {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.favorite:hover {
+  color: #e74c3c;
+}
+
+.favoriteActive {
+  color: #e74c3c;
+}
+
+@media (max-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 968px) {
+  .main {
+    padding: 0 1rem;
+  }
+
+  .heroTitle {
+    font-size: 2rem;
+  }
+
+  .controls {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .itemCount {
+    justify-content: space-between;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+
+  .filters {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #e5e5e5;
+    padding-right: 0;
+    padding-bottom: 2rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 1.5rem;
+  }
+
+  .heroText {
+    font-size: 0.875rem;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .name {
+    font-size: 0.75rem;
+  }
+
+  .meta {
+    font-size: 0.65rem;
+  }
+}

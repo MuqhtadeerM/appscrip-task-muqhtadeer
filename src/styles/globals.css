@@ -1,64 +1,56 @@
-.header {
-  border-bottom: 1px solid #e5e5e5;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.topHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 40px;
-}
-
-.logoLeft {
-  font-size: 40px;
-}
-
-.logoCenter {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 35px;
-  font-weight: bold;
-  letter-spacing: 2px;
-}
-
-.logoRight {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  font-size: 20px;
-}
-
-.navBar {
-  padding: 14px 0;
-}
-
-.navBar ul {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  gap: 40px;
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-
-.hero {
-  text-align: center;
-  padding: 80px 20px 100px;
-}
-
-.hero h1 {
-  font-size: 42px;
-  font-weight: 400;
-  letter-spacing: 2px;
-  margin-bottom: 20px;
-}
-
-.hero p {
-  max-width: 720px;
-  margin: 0 auto;
+html {
   font-size: 16px;
-  line-height: 1.8;
-  color: #555;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  color: #212121;
+  background: #fff;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
 }

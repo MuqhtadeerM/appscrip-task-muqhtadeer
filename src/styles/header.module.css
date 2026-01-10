@@ -1,0 +1,174 @@
+.header {
+  background: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  position: relative;
+  top: 0;
+  z-index: 100;
+}
+
+.topBar {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.menuBtn {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  padding: 8px;
+}
+
+.menuIcon {
+  width: 20px;
+  height: 2px;
+  background: #212121;
+  transition: 0.3s;
+}
+
+.logoImage {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.logoText {
+  font-size: 2.5rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.iconBtn {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s;
+}
+
+.iconBtn:hover {
+  opacity: 0.6;
+}
+
+.langSelect {
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.navLink {
+  position: relative;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  padding-bottom: 4px;
+}
+.navLink:hover {
+  opacity: 0.6;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background-color: #000;
+  transition: width 0.25s ease;
+}
+
+.navLink:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 968px) {
+  .topBar {
+    padding: 1rem;
+  }
+  .header {
+    position: sticky;
+  }
+
+  .menuBtn {
+    display: flex;
+    order: -1;
+  }
+
+  .logo {
+    order: 0;
+  }
+
+  .logoText {
+    position: static;
+    transform: none;
+    order: 1;
+    flex: 1;
+  }
+
+  .actions {
+    order: 2;
+    gap: 1rem;
+  }
+
+  .nav {
+    flex-direction: column;
+    padding: 1rem;
+    border-top: none;
+    align-items: flex-start;
+    display: none;
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .langSelect {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .actions {
+    gap: 0.5rem;
+  }
+
+  .iconBtn {
+    padding: 0.25rem;
+  }
+
+  .iconBtn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .logoText {
+    font-size: 1.25rem;
+  }
+}
